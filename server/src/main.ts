@@ -8,7 +8,6 @@ async function bootstrap() {
     origin: [
       'http://ec2-3-35-11-25.ap-northeast-2.compute.amazonaws.com',
       'http://ec2-3-35-11-25.ap-northeast-2.compute.amazonaws.com:3000',
-      'http://localhost:3000',
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,

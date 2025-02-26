@@ -1,6 +1,7 @@
 import { Movie, MovieResponse, MovieSearchParams } from "@/types/movie";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api";
+const API_URL =
+    "http://ec2-3-35-11-25.ap-northeast-2.compute.amazonaws.com:4000/api";
 
 // 검색 파라미터를 쿼리 문자열로 변환
 const buildQueryString = (params: MovieSearchParams): string => {
