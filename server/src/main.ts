@@ -4,14 +4,15 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // CORS 설정
   app.enableCors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    origin: [
+      'http://ec2-3-35-11-25.ap-northeast-2.compute.amazonaws.com:3000',
+      'http://localhost:3000',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,
   });
 
-  // API 접두사 설정
   app.setGlobalPrefix('api');
 
   await app.listen(process.env.PORT || 4000);
