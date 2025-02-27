@@ -1,14 +1,16 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { eq, like, and, desc, sql } from 'drizzle-orm';
+import { and, desc, eq, like, sql } from 'drizzle-orm';
 import { DrizzleService } from 'src/infra/db/drizzle.service';
-import { MovieSearch, movies } from 'src/infra/db/schema';
+import { movies } from 'src/infra/db/models/movie.model';
+import { GetMoviesQueryDTO } from 'src/modules/movies/dto/request/get-movies.dto';
+import { PostMoviesBodyDTO } from 'src/modules/movies/dto/request/post-movies.dto';
 
 @Injectable()
 export class MoviesService {
   constructor(private drizzle: DrizzleService) {}
 
-  async findAll(params: MovieSearch) {
-    const { query, hasCookie, page = 1, limit = 10 } = params;
+  async findAll(dto: GetMoviesQueryDTO) {
+    const { query, hasCookie, page = 1, limit = 10 } = dto;
     const offset = (page - 1) * limit;
 
     const conditions: any[] = [];
@@ -66,7 +68,7 @@ export class MoviesService {
     return result[0];
   }
 
-  async create(data: any) {
+  async create(data: PostMoviesBodyDTO) {
     // 필수 필드 확인
     if (!data.title || data.releaseYear === undefined) {
       throw new Error('Title and releaseYear are required fields');

@@ -9,8 +9,9 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ZodValidationPipe } from 'src/common/pipes/zod-validation.pipe';
-import { insertMovieSchema, searchMovieSchema } from 'src/infra/db/schema';
+
+import { GetMoviesQueryDTO } from 'src/modules/movies/dto/request/get-movies.dto';
+import { PostMoviesBodyDTO } from 'src/modules/movies/dto/request/post-movies.dto';
 import { MoviesService } from './movies.service';
 
 @Controller('movies')
@@ -18,7 +19,7 @@ export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
   @Get()
-  async findAll(@Query(new ZodValidationPipe(searchMovieSchema)) query: any) {
+  async findAll(@Query() query: GetMoviesQueryDTO) {
     return this.moviesService.findAll(query);
   }
 
@@ -28,7 +29,7 @@ export class MoviesController {
   }
 
   @Post()
-  async create(@Body(new ZodValidationPipe(insertMovieSchema)) data: any) {
+  async create(@Body() data: PostMoviesBodyDTO) {
     return this.moviesService.create(data);
   }
 
