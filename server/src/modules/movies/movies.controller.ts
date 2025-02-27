@@ -10,8 +10,8 @@ import {
   Query,
 } from '@nestjs/common';
 import { ZodValidationPipe } from 'src/common/pipes/zod-validation.pipe';
-import { searchMovieSchema, insertMovieSchema } from 'src/infra/db/schema';
-import { MoviesService } from 'src/modules/movies/movies.service';
+import { insertMovieSchema, searchMovieSchema } from 'src/infra/db/schema';
+import { MoviesService } from './movies.service';
 
 @Controller('movies')
 export class MoviesController {

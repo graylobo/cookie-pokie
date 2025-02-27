@@ -1,7 +1,7 @@
-import { Module, Global } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { Global, Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import databaseConfig from 'src/config/database.config';
 import { DrizzleService } from './drizzle.service';
-import databaseConfig from '../config/database.config';
 
 @Global()
 @Module({

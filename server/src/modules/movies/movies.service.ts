@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { DrizzleService } from '../db/drizzle.service';
-import { movies, Movie, NewMovie, MovieSearch } from '../db/schema';
 import { eq, like, and, desc, sql } from 'drizzle-orm';
+import { DrizzleService } from 'src/infra/db/drizzle.service';
+import { MovieSearch, movies } from 'src/infra/db/schema';
 
 @Injectable()
 export class MoviesService {
@@ -11,7 +11,7 @@ export class MoviesService {
     const { query, hasCookie, page = 1, limit = 10 } = params;
     const offset = (page - 1) * limit;
 
-    let conditions = [];
+    const conditions: any[] = [];
 
     if (query) {
       conditions.push(like(movies.title, `%${query}%`));
