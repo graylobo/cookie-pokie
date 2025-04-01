@@ -18,4 +18,21 @@ export class UserService {
       .where(eq(users.socialId, socialId));
     return user;
   }
+
+  async findById(id: number) {
+    const [result] = await this.drizzle.db
+      .select({
+        id: users.id,
+        socialId: users.socialId,
+        email: users.email,
+        name: users.name,
+        createdAt: users.createdAt,
+        updatedAt: users.updatedAt,
+      })
+      .from(users)
+      .where(eq(users.id, id))
+      .limit(1);
+
+    return result;
+  }
 }

@@ -12,7 +12,6 @@ export class AuthController {
 
   private getCookieDomain(): string | undefined {
     const isProduction = this.configService.get('NODE_ENV') === 'production';
-    // 프로덕션 환경에서는 '.coincoin.kr'을 반환
     return isProduction ? '.coincoin.kr' : undefined;
   }
 
@@ -30,7 +29,7 @@ export class AuthController {
     });
 
     res.redirect(
-      `${this.configService.get('CORS_ORIGIN')}/auth/google/callback`,
+      `${this.configService.get('CLIENT_URL')}/auth/google/callback`,
     );
   }
 }

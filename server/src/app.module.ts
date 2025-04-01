@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { DatabaseModule } from './infra/db/db.module';
 import { MoviesModule } from './modules/movies/movies.module';
 import databaseConfig from './config/database.config';
+import { AuthModule } from 'src/modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import databaseConfig from './config/database.config';
     }),
     DatabaseModule,
     MoviesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
